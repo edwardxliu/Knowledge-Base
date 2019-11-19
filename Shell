@@ -1,0 +1,23 @@
+1. Replace text across multiple lines
+
+E.g. replace text between <<< and >>> to text "COMMENT" in a test.txt file with below info
+
+  file content
+  aabbcc<<<comment part 1
+  comment part 2>>>
+  ddeeff
+
+Create a replace.sed file including code below
+
+  :begin
+  /<<</,/>>>/ {
+    />>>/! {
+        $! {
+            N;
+             b begin
+        }
+    }
+    s/<<<.*>>>/COMMENT/;
+  }
+
+Execute command: sed -f replace.sed test.txt
