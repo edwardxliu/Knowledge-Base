@@ -13,3 +13,8 @@
         open /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg
       execute cmd: 
         xcode-select --install
+
+2. Can NOT found hard disk info during the installation of Ubuntu
+    Device: Dell XPS
+    Possible solution:
+        Change SATA Operator mode from RAID to AHCI in BIOS.
