@@ -1,0 +1,2 @@
+1. Difference betwee memset(), malloc() and calloc().
+  calloc() = malloc() + memset();
