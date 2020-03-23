@@ -18,3 +18,23 @@
     Device: Dell XPS
     Possible solution:
         Change SATA Operator mode from RAID to AHCI in BIOS.
+
+3. Check startup services
+    OS: 
+        Centos
+    Possible solution:
+        execute cmd: 
+            systemctl list-unit-files
+            systemctl status/stop/disable xxx.service
+
+4. Enter safe mode of Centos.
+    OS:
+        Centos
+    Possible Solution:
+        1. Press "e" during system selection.
+        2. Find "ro" and change it to "rw init=/sysroot/bin/sh"
+        3. Press "Ctrl-x"
+        4. Execute cmd: chroot /sysroot/
+        5. Do the fixing.
+        6. Execute cmd: touch /.autorelabel
+        
