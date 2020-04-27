@@ -1,0 +1,12 @@
+1. Signal transfer with parameters.
+  Solution 1: 
+    using lambda.
+      e.g. connect(lambda self.fun(p1))
+    but this method doesn't work well in loops.
+  Solution 2:
+    using functools.partial.
+      e.g. from functools import partial
+           connect(partial(self.fun(p1))
+    can be used in loops.
+      e.g. for i in xxx:
+              connect(partial(self.fun(i))
