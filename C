@@ -1,2 +1,75 @@
 1. Difference betwee memset(), malloc() and calloc().
   calloc() = malloc() + memset();
+
+2. Mixing C and C++. Example of How to handle class in C++.
+    // Circle.h - a C++ class
+    #ifndef CIRCLE_H
+    #define CIRCLE_H
+    
+    class Circle {
+        public:
+            Circle(float radius):_radius(radius) {}
+            float getArea() { return 3.14159 * _radius * _radius; }
+        private:
+            float _radius;
+    };
+    
+    #endif
+
+
+    // Circle_C.cpp - function definition
+    #include "Circle_C.h"
+    #include "Circle.h"
+    
+    void *Circle_C_new(float radius) {
+        return new Circle(radius);
+    }
+    
+    void Circle_C_delete(void *circle) {
+        Circle *c = (Circle *)circle;
+        delete c;
+    }
+    
+    float Circle_C_getArea(void *circle) {
+        Circle *c = (Circle *)circle;
+        return c->getArea();
+    }
+
+
+    /* Circle_C.h - must be compiled both in C and C++
+    #ifndef Circle_C_H
+    #define Circle_C_H
+    
+        #ifdef __cplusplus
+        extern "C" {
+        #endif
+    
+        void *Circle_C_new(float radius);
+        void  Circle_C_delete(void *circle);
+        float Circle_C_getArea(void *circle);
+    
+        #ifdef __cplusplus
+        }
+        #endif
+    
+    #endif
+
+
+    /* mixed.c - C access function in class in C+++
+    #include <stdio.h>
+    #include "Circle_C.h"
+    
+    void main() {
+        float radius = 1.5;
+    
+        void *circle = Circle_C_new(radius);
+        float area = Circle_C_getArea(circle);
+        printf ("Circle of radius %f has area %f\n", radius, area);
+        Circle_C_delete(circle);
+    }
+
+
+    Compile:
+        g++ -c Circle_C.cpp -o Circle_C.o
+        gcc -c mixed.c -o mixed.o
+        gcc -lstdc++ -o mixed mixed.o Circle_C.o
