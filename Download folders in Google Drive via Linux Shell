@@ -17,7 +17,7 @@ Step 3: Python code for generating download shell script file "script.sh".
   ########## include it if vpn is used #############
   import socks
   import socket
-  socks.set_default_proxy(socks.PROXY_TYPE_SOCKS5, "127.0.0.1", <replace with your vpn port>)
+  socks.set_default_proxy(socks.PROXY_TYPE_SOCKS5, "127.0.0.1", <replace with your vpn SOCKS port>)
   socket.socket = socks.socksocket
   ################## include end ###################
 
