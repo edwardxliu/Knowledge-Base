@@ -31,4 +31,17 @@ Execute command: sed -f replace.sed test.txt
 4. Delete a pattern-matched line and M lines before it and N lines after it in a text file.
   grep -v "$(grep -B <replace with M> -A <replace with N> '<replac with PATTERN>' <replace with input filename>)" <replace with input filename> > <replace with output filename>
 
+5. Read ini config file.
+  File format:
+    [section_1]
+    key_1=value_1
+    key_2=value_2
+    ...
 
+    [section_2]
+    key_1=value_1
+    key_2=value_2
+    ...
+  
+  grep -Pzo "(?s)(\s*)\N*\[<replace with section name>].*?\[|\[<replace with section name>\].*" <replace with ini filename>
+  
